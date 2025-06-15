@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Detox Ladies – Week 1 Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      font-family: sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fdfaf8;
+      padding-bottom: 100px;
+    }
+
+    .planner-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin: 25px 0 10px;
+      font-size: 20px;
+      color: #aa6f39;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 10px;
+      accent-color: #f1a8af;
+    }
+
+    button {
+      background-color: #f1a8af;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 30px auto 0;
+      display: block;
+      cursor: pointer;
+    }
+
+    .message {
+      color: green;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    .day-block {
+      margin-bottom: 40px;
+    }
+
+    .day-title {
+      font-size: 22px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+<div class="planner-box day-block">
+<div class="day-title">📅 Sunday</div>
+<h2>📘 Before Start</h2>
+<label><input type="checkbox" id="sunday_before1"> Read The Cortisol Trap</label>
+<label><input type="checkbox" id="sunday_before2"> Read Ginger Hack Detox</label>
+<label><input type="checkbox" id="sunday_before3"> Read The Menopause Brain</label>
+<h2>☀️ Sunday – Morning</h2>
+<label><input type="checkbox" id="sunday_m1"> Ginger Hack</label>
+<h2>🍵 Sunday – Afternoon</h2>
+<label><input type="checkbox" id="sunday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="sunday_a2"> Detox Soup for Dinner</label>
+<h2>🛏️ Sunday – Before Bed</h2>
+<label><input type="checkbox" id="sunday_b1"> Daily Gratitude Journal</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Monday</div>
+<h2>☀️ Monday – Morning</h2>
+<label><input type="checkbox" id="monday_m1"> Ginger Hack</label>
+<label><input type="checkbox" id="monday_m2"> Guided Visualization</label>
+<h2>🍵 Monday – Afternoon</h2>
+<label><input type="checkbox" id="monday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="monday_a2"> Detox Salad for Dinner</label>
+<h2>🛏️ Monday – Before Bed</h2>
+<label><input type="checkbox" id="monday_b1"> Daily Gratitude Journal</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Tuesday</div>
+<h2>☀️ Tuesday – Morning</h2>
+<label><input type="checkbox" id="tuesday_m1"> Ginger Hack</label>
+<h2>🍵 Tuesday – Afternoon</h2>
+<label><input type="checkbox" id="tuesday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="tuesday_a2"> Superfood Meal or Soup</label>
+<h2>🛏️ Tuesday – Before Bed</h2>
+<label><input type="checkbox" id="tuesday_b1"> Daily Gratitude Journal</label>
+<label><input type="checkbox" id="tuesday_b2"> Guided Meditation</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Wednesday</div>
+<h2>☀️ Wednesday – Morning</h2>
+<label><input type="checkbox" id="wednesday_m1"> Ginger Hack</label>
+<label><input type="checkbox" id="wednesday_m2"> Guided Visualization</label>
+<h2>🍵 Wednesday – Afternoon</h2>
+<label><input type="checkbox" id="wednesday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="wednesday_a2"> Detox Soup</label>
+<h2>🛏️ Wednesday – Before Bed</h2>
+<label><input type="checkbox" id="wednesday_b1"> Daily Gratitude Journal</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Thursday</div>
+<h2>☀️ Thursday – Morning</h2>
+<label><input type="checkbox" id="thursday_m1"> Ginger Hack</label>
+<h2>🍵 Thursday – Afternoon</h2>
+<label><input type="checkbox" id="thursday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="thursday_a2"> Superfood Salad or Meal</label>
+<h2>🛏️ Thursday – Before Bed</h2>
+<label><input type="checkbox" id="thursday_b1"> Guided Visualization or Meditation</label>
+<label><input type="checkbox" id="thursday_b2"> Daily Gratitude Journal</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Friday</div>
+<h2>☀️ Friday – Morning</h2>
+<label><input type="checkbox" id="friday_m1"> Ginger Hack</label>
+<label><input type="checkbox" id="friday_m2"> Visualization</label>
+<h2>🍵 Friday – Afternoon</h2>
+<label><input type="checkbox" id="friday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="friday_a2"> Superfood Meal or Soup</label>
+<h2>🛏️ Friday – Before Bed</h2>
+<label><input type="checkbox" id="friday_b1"> Daily Gratitude Journal</label>
+</div>
+<div class="planner-box day-block">
+<div class="day-title">📅 Saturday</div>
+<h2>☀️ Saturday – Morning</h2>
+<label><input type="checkbox" id="saturday_m1"> Ginger Hack</label>
+<h2>🍵 Saturday – Afternoon</h2>
+<label><input type="checkbox" id="saturday_a1"> Anti-inflammatory Tea</label>
+<label><input type="checkbox" id="saturday_a2"> Detox Soup</label>
+<h2>🛏️ Saturday – Before Bed</h2>
+<label><input type="checkbox" id="saturday_b1"> Meditation</label>
+<label><input type="checkbox" id="saturday_b2"> Daily Gratitude Journal</label>
+</div>
+
+  <button onclick="saveWeek()">Save Progress</button>
+  <div class="message" id="saveMessage">✔️ Progress saved!</div>
+
+  <script>
+    const STORAGE_KEY = "planner_week1_full";
+
+    function saveWeek() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const data = {};
+      checkboxes.forEach(cb => {
+        data[cb.id] = cb.checked;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      const msg = document.getElementById("saveMessage");
+      msg.style.display = "block";
+      setTimeout(() => { msg.style.display = "none"; }, 2000);
+    }
+
+    function loadWeek() {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      Object.entries(saved).forEach(([id, checked]) => {
+        const cb = document.getElementById(id);
+        if (cb) cb.checked = checked;
+      });
+    }
+
+    window.onload = loadWeek;
+  </script>
+</body>
+</html>
