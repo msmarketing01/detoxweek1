@@ -59,76 +59,73 @@
 </head>
 <body>
 
-<!-- DOMINGO -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Sunday</div>
-  <h2>☀️ Morning</h2>
-  <label><input type="checkbox" id="week2_sunday_00"> Ginger Hack</label>
-  <label><input type="checkbox" id="week2_sunday_01"> Gut Tea</label>
-  <label><input type="checkbox" id="week2_sunday_02"> Soup</label>
-  <h2>🍵 Afternoon</h2>
-  <label><input type="checkbox" id="week2_sunday_10"> —</label>
-  <h2>🛏️ Before Bed</h2>
-  <label><input type="checkbox" id="week2_sunday_20"> Daily Gratitude</label>
-  <button onclick="saveDay('sunday')">Save Progress</button>
-</div>
+<!-- Container para inserir os dias -->
+<div id="planner-container"></div>
+<div class="message" id="saveMessage">✔️ Progress saved!</div>
 
-<!-- SEGUNDA -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Monday</div>
-  <h2>☀️ Morning</h2>
-  <label><input type="checkbox" id="week2_monday_00"> Ginger Hack</label>
-  <label><input type="checkbox" id="week2_monday_01"> Visualization</label>
-  <h2>🍵 Afternoon</h2>
-  <label><input type="checkbox" id="week2_monday_10"> Gut Tea</label>
-  <label><input type="checkbox" id="week2_monday_11"> Salad</label>
-  <h2>🛏️ Before Bed</h2>
-  <label><input type="checkbox" id="week2_monday_20"> Daily Gratitude</label>
-  <button onclick="saveDay('monday')">Save Progress</button>
-</div>
+<script>
+const STORAGE_KEY = "planner_week2_full";
+const DAYS = [
+  ["sunday",    ["Ginger Hack", "Gut Tea", "Soup"],          [""],                    ["Daily Gratitude"]],
+  ["monday",    ["Ginger Hack", "Visualization"],            ["Gut Tea", "Salad"],     ["Daily Gratitude"]],
+  ["tuesday",   ["Ginger Hack", "Guided Meditation"],        ["Gut Tea", "Superfood Meal"], ["Daily Gratitude"]],
+  ["wednesday", ["Ginger Hack", "Visualization"],            ["Gut Tea", "Soup"],      ["Daily Gratitude"]],
+  ["thursday",  ["Ginger Hack", "Visualization"],            ["Gut Tea", "Salad"],     ["Daily Gratitude"]],
+  ["friday",    ["Ginger Hack", "Meditation"],               ["Gut Tea", "Superfood Meal"], ["Daily Gratitude"]],
+  ["saturday",  ["Ginger Hack"],                              ["Gut Tea", "Soup"],      ["Daily Gratitude"]]
+];
 
-<!-- TERÇA -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Tuesday</div>
-  <h2>☀️ Morning</h2>
-  <label><input type="checkbox" id="week2_tuesday_00"> Ginger Hack</label>
-  <label><input type="checkbox" id="week2_tuesday_01"> Guided Meditation</label>
-  <h2>🍵 Afternoon</h2>
-  <label><input type="checkbox" id="week2_tuesday_10"> Gut Tea</label>
-  <label><input type="checkbox" id="week2_tuesday_11"> Superfood Meal</label>
-  <h2>🛏️ Before Bed</h2>
-  <label><input type="checkbox" id="week2_tuesday_20"> Daily Gratitude</label>
-  <button onclick="saveDay('tuesday')">Save Progress</button>
-</div>
+function createPlanner() {
+  const container = document.getElementById("planner-container");
+  DAYS.forEach(([day, morning, afternoon, night]) => {
+    const box = document.createElement("div");
+    box.className = "planner-box day-block";
+    box.innerHTML = `<div class="day-title">🗕️ ${capitalize(day)}</div>`;
 
-<!-- QUARTA -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Wednesday</div>
-  <h2>☀️ Morning</h2>
-  <label><input type="checkbox" id="week2_wednesday_00"> Ginger Hack</label>
-  <label><input type="checkbox" id="week2_wednesday_01"> Visualization</label>
-  <h2>🍵 Afternoon</h2>
-  <label><input type="checkbox" id="week2_wednesday_10"> Gut Tea</label>
-  <label><input type="checkbox" id="week2_wednesday_11"> Soup</label>
-  <h2>🛏️ Before Bed</h2>
-  <label><input type="checkbox" id="week2_wednesday_20"> Daily Gratitude</label>
-  <button onclick="saveDay('wednesday')">Save Progress</button>
-</div>
+    box.innerHTML += renderSection("☀️ Morning", morning, day, 0);
+    box.innerHTML += renderSection("🍵 Afternoon", afternoon, day, 1);
+    box.innerHTML += renderSection("🛎️ Before Bed", night, day, 2);
+    box.innerHTML += `<button onclick="saveDay('${day}')">Save Progress</button>`;
+    container.appendChild(box);
+  });
+}
 
-<!-- QUINTA -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Thursday</div>
-  <h2>☀️ Morning</h2>
-  <label><input type="checkbox" id="week2_thursday_00"> Ginger Hack</label>
-  <label><input type="checkbox" id="week2_thursday_01"> Visualization</label>
-  <h2>🍵 Afternoon</h2>
-  <label><input type="checkbox" id="week2_thursday_10"> Gut Tea</label>
-  <label><input type="checkbox" id="week2_thursday_11"> Salad</label>
-  <h2>🛏️ Before Bed</h2>
-  <label><input type="checkbox" id="week2_thursday_20"> Daily Gratitude</label>
-  <button onclick="saveDay('thursday')">Save Progress</button>
-</div>
+function renderSection(title, items, day, section) {
+  let html = `<h2>${title}</h2>`;
+  items.forEach((item, idx) => {
+    if (!item) item = "—";
+    const id = `week2_${day}_${section}${idx}`;
+    html += `<label><input type="checkbox" id="${id}"> ${item}</label>`;
+  });
+  return html;
+}
 
-<!-- SEXTA -->
-<div class="planner-box day-block">
-  <div class="day-title">📅 Fri
+function saveDay(dayPrefix) {
+  const checkboxes = document.querySelectorAll(`input[id^="week2_${dayPrefix}_"]`);
+  const allData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  checkboxes.forEach(cb => {
+    allData[cb.id] = cb.checked;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(allData));
+  const msg = document.getElementById("saveMessage");
+  msg.style.display = "block";
+  setTimeout(() => { msg.style.display = "none"; }, 2000);
+}
+
+function loadWeek() {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  Object.entries(saved).forEach(([id, checked]) => {
+    const cb = document.getElementById(id);
+    if (cb) cb.checked = checked;
+  });
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+createPlanner();
+window.onload = loadWeek;
+</script>
+</body>
+</html>
